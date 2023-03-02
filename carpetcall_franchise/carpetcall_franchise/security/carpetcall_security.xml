@@ -1,0 +1,103 @@
+<odoo>
+
+    <data>
+        <!-- CarpetCall User Group -->
+        <record  id="carpetcall_group_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="base.module_category_services_carpetcall" />
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+
+        <!-- CarpetCall Out Normal User Group-->
+        <record id="carpetcall_group_usernor" model="res.groups">
+            <field name="name">Usernormal</field>
+            <field name="category_id" ref="base.module_category_services_carpetcall" />
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+
+        <!-- CarpetCall Manager Group -->
+        <record id="carpetcall_group_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="base.module_category_services_carpetcall" />
+            <field name="implied_ids" eval="[(4, ref('carpetcall_group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+<!--        <record model="ir.rule" id="record_restricted_company_rule">-->
+<!--            <field name="name">Restricted Record: multi-company</field>-->
+<!--            <field name="model_id" ref="model_record_restricted"/>-->
+<!--            <field name="global" eval="True"/>-->
+<!--            <field name="domain_force"> [('company_id', 'in', company_ids)] </field>-->
+<!--        </record>-->
+
+
+<!--        for the mutil-company setting-->
+        <record id="restricted_company_rule_book" model="ir.rule">
+            <field name="name">Restricted multi-company</field>
+            <field name="model_id" ref="model_carpetcall_book" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+        <record id="carpetcall_group_readonly" model="res.groups">
+            <field name="name">User_Readeronly</field>
+            <field name="category_id" ref="base.module_category_services_carpetcall" />
+            <field name="implied_ids" eval="[(4,ref('base.group_user'))]" />
+        </record>
+
+
+<!--            <field name="category_id" ref="base.module_category_services_carpetcall" />-->
+<!--            <field name="domain_force">['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>-->
+
+
+
+        <record id="postgresql_rule" model="ir.rule">
+            <field name="name">Postgresql test</field>
+            <field name="model_id" ref="model_carpetcall_franchise_testsql"/>
+<!--            <field name="category_id" ref="base.module_category_services_carpetcall" />-->
+<!--            <field name="domain_force">['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>-->
+<!--            <field name="domain_force">[('company_id', 'in', company_ids)]</field>  -->
+<!--            the right sentence -->
+        </record>
+
+        <record id="carpetcall_user_only_read" model="ir.rule">
+            <field name="name">CarpetCall sales readonly</field>
+            <field name="model_id" ref="model_carpetcall_book" />
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        </record>
+<!--            <field name="groups" eval="[(4, ref('carpetcall_group_user'))]"/>-->
+
+<!--            <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>-->
+<!--            <field name="global" eval="True" />-->
+<!--            <field name="domain_force">['|',('partner_id.user_id','=',user.id),('partner_id.user_id','=',False)]</field>-->
+<!--            <field name="groups" eval="[(4, ref('carpetcall_group_user'))]"/>-->
+
+<!--            <field name="groups">carpetcall_group_user</field>-->
+<!--            <field name="domain_force">['|', ('user_id', '=', user.id), ('user_id', '=', False)]</field>-->
+<!--            <field name="domain_force">[('user_id', '=', user.id)]</field>-->
+
+
+
+
+
+    </data>
+
+    <data noupdate="1">
+
+        <record id="carpetcall_user_rule" model="ir.rule">
+            <field name="name">CarpetCall Book User Access</field>
+            <field name="model_id" ref="model_carpetcall_book"/>
+            <field name="domain_force">[('active', '=', True)]</field>
+<!--            <field name="domain_force">[('active', '=', False)]</field>-->
+            <field name="groups" eval="[(4, ref('carpetcall_group_user'))]"/>
+        </record>
+
+    </data>
+
+
+
+</odoo>

@@ -1,0 +1,69 @@
+<odoo>
+
+<!--    create the menu info-->
+    <record id="menu_builder_form12" model="website.menu">
+        <field name="name">Create Builder</field>
+        <field name="url">/builder_webform</field>
+        <field name="parent_id" ref="website.main_menu" />
+        <field name="sequence">55</field>
+    </record>
+
+
+
+<!--    the Templeate of what to show int the website-->
+    <template id="create_builder" name="Create Builders">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form" action="/create/webbuilder" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label for="builder_name" class="control-label">Builder Name</label>
+                                <input  type="text" name="builder_name" t-att-value="builder_name" id="builder_name" class="form-control" placeholder="e.g Johh willia" required="required" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="control-label">Your Email</label>
+                                <input type="email" name="email_id" t-att-value="email_id"  id="email_id" class="form-control" required="required" />
+                            </div>
+
+                            <div class="clearfix oe_login_buttons">
+                                <button type="submit" class="btn btn-primary pull-left" >Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record  id="builder_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/builder-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">carpetcall_franchise.builder_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="carpetcall_franchise.builder_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Thanks!</h1>
+                            <div  class="row">
+                                <div class="col-lg-8">
+                                    <div  class="alert alert - success" role="status">
+                                        Your message has been sent successfully.
+                                    </div>
+                                    <p>
+                                        We will get back to you shortly.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_book_user,BookUser,model_carpetcall_book,carpetcall_group_user,1,1,1,0
+access_book_lines_user,BookUserLines,model_carpetcall_book_lines,carpetcall_group_user,1,1,1,1
+access_book_usernor,BookUserNor,model_carpetcall_book,carpetcall_group_usernor,1,1,1,0
+access_book_lines_usernor,BookUserNorLines,model_carpetcall_book_lines,carpetcall_group_usernor,1,1,1,1
+access_book_manager,BookManager,model_carpetcall_book,carpetcall_group_manager,1,1,1,1
+access_builder_manager,BuilderManager,model_carpetcall_builder,carpetcall_group_manager,1,1,1,1
+access_builder_user,BuilderUser,model_carpetcall_builder,carpetcall_group_user,1,1,1,1
+access_builder_usernor,BuilderUser,model_carpetcall_builder,carpetcall_group_usernor,1,1,1,1
+access_partner_product, PartnerManager,model_carpetcall_franchise_partner_product,carpetcall_group_manager,1,1,1,1
+access_testsql,TestsqlManager,model_carpetcall_franchise_testsql,carpetcall_group_manager,1,1,1,1
+access_book_stage_user,BookUserStages,model_carpetcall_book_stage,carpetcall_group_user,1,1,1,1
+access_book_stage_manager,BookManagerStages,model_carpetcall_book_stage,carpetcall_group_manager,1,1,1,1
+access_book_userread,BookUserRead,model_carpetcall_book,carpetcall_group_readonly,1,1,1,0
+access_book_stage_userread,BookUserReadStages,model_carpetcall_book_stage,carpetcall_group_readonly,1,1,1,1
+access_book_lines_userread,BookUserReadLines,model_carpetcall_book_lines,carpetcall_group_readonly,1,1,1,1
+access_builder_userread,BuilderReaduser,model_carpetcall_builder,carpetcall_group_readonly,1,1,1,1
+access_book_stage_usernor,BookNormalStages,model_carpetcall_book_stage,carpetcall_group_usernor,1,1,1,0

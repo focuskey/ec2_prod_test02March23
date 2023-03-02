@@ -1,0 +1,28 @@
+<odoo noupdate="1">
+
+    <record id="stage_new" model="carpetcall.book.stage">
+        <field name="name">Requested</field>
+        <field name="sequence">10</field>
+        <field name="state">new</field>
+    </record>
+
+    <record id="stage_open" model="carpetcall.book.stage">
+        <field name="name">Operating</field>
+        <field name="sequence">20</field>
+        <field name="state">open</field>
+    </record>
+
+    <record id="stage_done" model="carpetcall.book.stage">
+        <field name="name">Finished</field>
+        <field name="sequence">30</field>
+        <field name="state">done</field>
+    </record>
+
+    <record id="stage_cancel" model="carpetcall.book.stage">
+        <field name="name">Canceled</field>
+        <field name="sequence">40</field>
+        <field name="state">cancel</field>
+    </record>
+</odoo>
+
+

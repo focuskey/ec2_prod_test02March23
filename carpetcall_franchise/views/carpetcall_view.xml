@@ -1,0 +1,508 @@
+<odoo>
+    <record id="view_from_carpetcall" model="ir.ui.view">
+        <field name="name">CarpetCALL Form</field>
+        <field name="model">carpetcall.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" invisible="True" />
+<!--                    <button name="button_check_isbn" type="object" string="Check ISBN" />-->
+
+
+                    <button name="button_done0"
+                            type="object"
+                            string="Confirm the Requested"
+                            attrs="{'invisible': [('state', 'in', ['open', 'done', 'cancel'])]}"
+                            states="new"
+                            class="oe_highlight" />
+
+
+                    <button name="button_done1"
+                            type="object"
+                            string="Operate Confirm"
+                            attrs="{'invisible': [('state', 'in', ['new', 'done', 'cancel'])]}"
+                            states="open"
+                            class="oe_highlight" />
+
+
+                    <button name="button_done2"
+                            type="object"
+                            string="Done Confirm"
+                            attrs="{'invisible': [('state', 'in', ['new', 'open', 'cancel'])]}"
+                            states="done"
+                            class="oe_highlight" />
+
+
+                    <button name="button_done3"
+                            type="object"
+                            string="Cancel Confirm"
+                            attrs="{'invisible': [('state', 'in', ['new', 'done', 'open'])]}"
+                            states="cancel"
+                            class="oe_highlight" />
+
+
+                    <field name="stage_id"
+                           widget="statusbar"
+                           options="{'clickable': True, 'fold_field': 'fold'}" />
+                </header>
+
+                <sheet>
+                    <group name="group_top">
+
+                        <group name="group_left" string="Header info">
+                            <field name="name" />
+
+<!--                            <field name="colour" />-->
+                            <field name="stock" />
+
+                            <field name="author_ids" widget="many2many_tags" />
+                            <field name="build_id" />
+                            <field name="builder_name" />
+                            <field name="builder_phone" />
+                            <field name="builder_address" />
+                            <field name="date_published"/>
+                            <field name="publisher_id"/>
+                            <field name="function_info" />
+                            <field name="parking_zone" />
+                            <field name="two_wheels" />
+                            <field name="four_wheels" />
+<!--                            <field name="parterid" />-->
+<!--                            <field name="company_id" />-->
+<!--                            <group>-->
+
+<!--                            </group>-->
+
+<!--                            <field name="company_id" string="lambda self: self.env.user"/>-->
+<!--!&#45;&#45;                            <field name="company_id_s" />&ndash;&gt;-->
+                        </group>
+
+                        <group name="group right" string="Price_info">
+                            <field name="retail_price" attrs="{'readonly':False}"/>
+                            <field name="roll_price" attrs="{'readonly':True}" />
+                            <field name="floor_cost" />
+                            <field name="roll_qty" />
+                            <field name="order_qty" attrs="{'readonly':True}"/>
+                            <field name="free_qty" />
+                            <field name="isbn" />
+<!--                            <field name="active" />-->
+                            <field name="progress_qty" />
+                            <field name="image" widget="image" />
+                            <field name="discount2" attrs="{'readonly':True}"/>
+
+                            <field name="comment" attrs="{'readonly':True}" />
+                            <field name="color" widget="int_color" />
+
+
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="page_lines" string="The Basic info">
+                            <group string="BSIC_INFO">
+                                <field name="sku" />
+                                <field name="fibre" />
+                                <field name="roll_type" />
+                            </group>
+                        </page>
+
+                        <page name="page_line2" string="Company_info">
+                            <group string="COMPANY_INFO">
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="user_id"/>
+                                <field name="company_details" />
+                                <field name="tel_info" />
+                                <field name="address_info" />
+                            </group>
+                        </page>
+
+                        <page name="page_3" string="Product_lines">
+                            <group string="PRODUCT_INFO">
+                                <field name="product_lines">
+                                    <tree string="coundttres" count="Count">
+                                        <field name="foreign_key"  invisible="0" />
+                                        <field name="product_id"  />
+                                        <field name="product_qty"  sum="Total" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+
+                    </notebook>
+
+                    <footer name="footerp">
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" groups="base.group_user" />
+                            <field name="activity_ids" />
+                            <field name="message_ids" />
+                        </div>
+                    </footer>
+
+
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+
+<!--    <record model="ir.ui.view" id="record_form_view">-->
+<!--        <field name="name">record.restricted.form</field>-->
+<!--        <field name="model">record.restricted</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="company_id" groups="base.group_multi_company"/>-->
+<!--                            <field name="other_record_id"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+
+
+
+    <record id="view_tree_carpetcall" model="ir.ui.view">
+        <field name="name">CarpetCALL List</field>
+        <field name="model">carpetcall.book</field>
+<!--        <field name="groups_id">carpetcall_franchise.carpetcall_group_manager</field>-->
+<!--        <field name="priority">3</field>-->
+        <field name="arch" type="xml">
+<!--            <tree decoration-info="state == 'draft'" decoration-danger="state == 'help_needed'" decoration-bf="state='busy'">-->
+            <tree>
+                <field name="name" />
+                <field name="sku" string="tets12" invisible="False"/>
+                <field name="fibre" />
+                <field name="colour" />
+                <field name="stock" />
+<!--                <field name="active" />-->
+                <field name="create_uid" />
+                <field name="roll_type" />
+                <field name="retail_price" groups="carpetcall_franchise.carpetcall_group_manager"/>
+                <field name="roll_price" />
+<!--                #widget="handle"/>-->
+                <field name="progress_qty" string="%" widget="percentpie" />
+                <field name="floor_cost" string="The Floor_Cost" widget="handle"/>
+                <field name="free_qty" />
+                <field name="total" sum="Total:" />
+<!--                <field name="progress_qty"  string="Qty Hand" widget="progressbar" />-->
+                <field name="roll_qty" string="The Stock QTY" widget="progressbar" invisible="context.get('set_visible', False)"  />
+<!--                <field name="roll_qty" string="The Stock QTY" widget="percentipie" />-->
+<!--                <field name="roll_qty" string="Stock QTY" widget="progressbar" title="Will Title" readonly="True" readonly_color="red" editable="False" editable_color="blue" orientation="vertical" width="500" height="100" />-->
+
+                <field name="order_qty" groups="carpetcall_franchise.carpetcall_group_usernor" />
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_tree_carpetcall_builder" model="ir.ui.view">
+        <field name="name">CarpetCall Builder List</field>
+        <field name="model">carpetcall.builder</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="mobie" />
+                <field name="address" />
+                <field name="builder_name" />
+                <field name="serial_no" />
+                <field name="discount" />
+<!--                widget="progressbar"/-->
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_tree_carpetcall_user" model="ir.ui.view">
+        <field name="name">CarpetCALL List_user</field>
+        <field name="model">carpetcall.book</field>
+        <field name="inherit_id" ref="view_tree_carpetcall" />
+        <field name="groups_id" eval="[(4, ref('carpetcall_franchise.carpetcall_group_user'))]" />
+<!--        <field name="domain">[('create_uid', '=', user.id)]</field>-->
+<!--        <field name="domain">[('active', '=', False)]</field>-->
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='sku']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+<!--                <xpath expr="//field[@name='create_uid']" position="attributes">-->
+<!--                    <attribute name="domain">[('name', '=', 'qld_user')]</attribute>-->
+<!--                </xpath>-->
+
+
+<!--                <xpath expr="//field[@name='fibre']" position="attributes">-->
+<!--                    <attribute name="domain">[('fibre','=', 'asdf')]</attribute>-->
+<!--                </xpath>-->
+
+<!--                <xpath expr="//field[@name='create_uid']" position="attributes">-->
+<!--                    <attribute name="domain">[('create_uid', '=', '11')]</attribute>-->
+<!--                </xpath>-->
+
+
+
+            </data>
+        </field>
+    </record>
+
+
+    <record id="view_tree_carpetcall_manager" model="ir.ui.view">
+        <field name="name">CarpetCALL List_manager</field>
+        <field name="model">carpetcall.book</field>
+        <field name="inherit_id" ref="view_tree_carpetcall" />
+        <field name="groups_id" eval="[(4, ref('carpetcall_franchise.carpetcall_group_manager'))]" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='sku']" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="after">
+<!--                        <field name="discount" widget="product_discount" />-->
+                    <field name="discount" widget="percentage" />
+
+                </xpath>
+
+            </data>
+        </field>
+    </record>
+
+
+    <record id="view_search_carpetcall" model="ir.ui.view">
+        <field name="name">Carpetcall Filters</field>
+        <field name="model">carpetcall.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="publisher_id" />
+                <field name="stock" />
+                <field name="retail_price" />
+                <field name="roll_price" />
+                <field name="floor_cost" />
+                <field name="roll_qty" />
+                <filter name="filter_inactive" string="Inactive" domain="[('active','=',True)]" />
+                <filter name="filter_active" string="Active" domain="[('active','=',False)]" />
+                <filter name="stock" string="Stock QLD" domain="[('stock', '=', 'QLD')]" />
+                <filter name="stock" string="Stock VIC" domain="[('stock', '=', 'VIC')]" />
+                <filter name="stock" string="Stock NSW" domain="[('stock', '=', 'NSW')]" />
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="carpetcall_franchise.list">
+            <field name="name">partner_product list</field>
+            <field name="model">carpetcall_franchise.partner_product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="product_name"/>
+                    <field name="display_name" />
+                    <field name="total_quantity_sold"/>
+                </tree>
+            </field>
+    </record>
+
+
+    <record id="carpetcall_testsql_view_tree" model="ir.ui.view">
+        <field name="name">carpetcall.testsql.view.tree</field>
+        <field name="model">carpetcall_franchise.testsql</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sale_number" />
+<!--                <field name="company_id" />-->
+<!--                <field name="company_details" />-->
+
+                <field name="customer_name" />
+<!--                <field name="order_date" />-->
+<!--                <field name="amount" />-->
+<!--                <field name="currency_id" invisible="1" />-->
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_from_carpetcall_user" model="ir.ui.view">
+        <field name="name">CarpetCALL Form_user</field>
+        <field name="model">carpetcall.book</field>
+        <field name="inherit_id" ref="view_from_carpetcall" />
+        <field name="groups_id" eval="[(4, ref('carpetcall_franchise.carpetcall_group_manager'))]" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='retail_price']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='order_qty']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='discount2']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='comment']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+
+            </data>
+<!--                <field name="isbn" position="after">-->
+<!--                    <field name="colour"  />-->
+<!--                </field>-->
+        </field>
+    </record>
+
+
+    <record id="view_from_carpetcall_usernor" model="ir.ui.view">
+        <field name="name">CarpetCALL Form_usernormal</field>
+        <field name="model">carpetcall.book</field>
+        <field name="inherit_id" ref="view_from_carpetcall" />
+        <field name="groups_id" eval="[(4, ref('carpetcall_franchise.carpetcall_group_usernor'))]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount2']" position="replace">
+            </xpath>
+<!--            <attribute name="invisible">True</attribute>-->
+                <!-- Replace the filed with empty tag to remove it -->
+
+
+
+            <data>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='stock']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='author_ids']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='build_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='builder_name']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='builder_phone']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='builder_address']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='date_published']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='publisher_id']" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='function_info']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='parking_zone']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='two_wheels']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='four_wheels']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='retail_price']" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='roll_price']" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='roll_qty']" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+
+
+                <xpath expr="//field[@name='floor_cost']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+
+                <xpath expr="//field[@name='order_qty']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                    <attribute name="string">Reserved</attribute>
+                </xpath>
+
+                <field name="free_qty" position="after">
+                    <field name="order_userno" readonly="False" />
+                    <field name="left_userno" readonly="True" />
+                </field>
+
+                <xpath expr="//field[@name='comment']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='isbn']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='stage_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+
+
+                <field name="isbn" position="after">
+                    <field name="colour" readonly="True"/>
+                </field>
+
+
+
+                <xpath expr="//page[@name='page_line2']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+<!--                <xpath expr="//footer[@name='footerp']" position="attributes">-->
+<!--                    <attribute name="invisible">True</attribute>-->
+<!--                </xpath>-->
+
+                <xpath expr="//button[@name='button_done0']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_done1']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_done2']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_done3']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+
+            </data>
+
+        </field>
+    </record>
+</odoo>

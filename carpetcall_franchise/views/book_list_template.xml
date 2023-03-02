@@ -1,0 +1,22 @@
+<odoo>
+    <template id="book_list_template" name="Book List">
+        <div id="wrap" class="container">
+            <h1>Books</h1>
+            <t t-foreach="books" t-as="book">
+                <div class="row">
+                    <span t-field="book.name"/>
+                    <span t-field="book.company_id"/>
+                    <span t-field="book.sku" />
+                    <span t-field="book.fibre" />
+                    <span t-field="book.stock" />
+                    <span t-field="book.roll_type" />
+                    <span t-field="book.retail_price" />
+                    <span t-field="book.roll_qty" />
+                    <span t-field="book.color" />
+                </div>
+            </t>
+        </div>
+    </template>
+
+
+</odoo>

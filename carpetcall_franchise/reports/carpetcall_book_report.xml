@@ -1,0 +1,100 @@
+<odoo>
+
+    <record id="paperformat_carpetcall_landscape" model="report.paperformat">
+        <field name="name">carpetCALL special</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+
+
+
+    <record id="action_carpetcall_book_report" model="ir.actions.report">
+        <field name="name">Report of the carpetcall</field>
+        <field name="model">carpetcall.book</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">carpetcall_franchise.book_catalog</field>
+        <field name="binding_model_id" ref="model_carpetcall_book" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_carpetcall_landscape" />
+    </record>
+
+
+    <template id="book_catalog" >
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+
+
+                        <div class="container">
+                            <div class="row bg-primary">
+                                <div class="col-3">Title</div>
+                                <div class="col-2">Builder</div>
+                                <div class="col-2">Roll Type</div>
+                                <div class="col-3">Free Qty</div>
+                                <div class="col-2">Discount</div>
+                            </div>
+
+                            <t t-foreach="docs" t-as="o">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <h4><span t-field="o.name" /></h4>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <h4><span t-field="o.publisher_id" /></h4>
+                                    </div>
+
+                                    <div class="col-2">
+<!--                                        <span t-field="o.roll_type" />-->
+<!--                                        <span t-field="o.image"-->
+<!--                                              t-options="{'widget':'image','style':'max-width: 32px'}" />-->
+                                        <ul class="list-unstyled">
+                                            <t t-foreach="o.author_ids" t-as="author">
+                                                <tr>
+                                                    <span t-field="author.name" />
+                                                    <span t-field="author.image_128"
+                                                          t-options="{'widget': 'image', 'style': 'max-width: 32px'}" />
+<!--                                                    <span> line 1</span>-->
+                                                    <br/>
+                                                </tr>
+                                            </t>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <h4><span t-field="o.free_qty" /></h4>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <h4><span t-field="o.discount" /></h4>
+<!--                                        <span t-field="o.image"  t-options="{'widget': 'image', 'style': 'max-width: 128px'}" />-->
+
+                                    </div>
+                                </div>
+
+                            </t>
+
+                        </div>
+
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+
+
+</odoo>
